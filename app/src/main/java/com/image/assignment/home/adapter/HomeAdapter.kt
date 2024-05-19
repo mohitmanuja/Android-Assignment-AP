@@ -1,6 +1,7 @@
 package com.image.assignment.home.adapter
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -32,8 +33,8 @@ class HomeAdapter(
         return items.size
     }
 
-    override fun onViewRecycled(holder: MediaViewHolder) {
-        super.onViewRecycled(holder)
+    override fun onViewDetachedFromWindow(holder: MediaViewHolder) {
+        super.onViewDetachedFromWindow(holder)
         val position = holder.adapterPosition
         jobHash[position]?.cancel()
         jobHash.remove(position)

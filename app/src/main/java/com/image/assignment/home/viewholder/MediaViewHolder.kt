@@ -7,6 +7,7 @@ import com.image.assignment.R
 import com.image.assignment.databinding.ItemMediaBinding
 import com.image.assignment.home.model.MediaResponse
 import com.image.assignment.utils.CachingUtil
+import com.image.assignment.utils.CustomDispatchers
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -58,7 +59,7 @@ class MediaViewHolder(
         }
 
         // Download from network
-        return withContext(Dispatchers.IO) {
+        return withContext(CustomDispatchers.IO) {
             val bitmap = CachingUtil.getBitmapFromURL(url)
             if (bitmap != null) {
                 CachingUtil.storeBitmap(bitmap, context, url)
