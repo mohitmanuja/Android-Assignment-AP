@@ -17,19 +17,29 @@
 
     <TextView
         android:id="@+id/loading_label"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Loading Data.. Please wait"
+        android:gravity="center"
+        android:paddingHorizontal="@dimen/size16"
+        android:text="@string/loading_data_please_wait"
+        android:textColor="@color/black"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.constraintlayout.widget.Group
-        android:id="@+id/loading_group"
-        android:layout_width="wrap_content"
+    <Button
+        android:id="@+id/retry_button"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:constraint_referenced_ids="progress_bar,loading_label" />
+        android:text="@string/retry"
+        android:visibility="gone"
+        tools:visibility="visible"
+        android:layout_marginHorizontal="@dimen/size32"
+        android:layout_marginTop="@dimen/size16"
+        app:layout_constraintTop_toBottomOf="@id/loading_label" />
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerview"
@@ -40,8 +50,6 @@
         app:spanCount="3"
         tools:listitem="@layout/item_media"
         tools:visibility="visible" />
-
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

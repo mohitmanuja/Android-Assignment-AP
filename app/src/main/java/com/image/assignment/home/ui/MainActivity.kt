@@ -37,14 +37,20 @@ class MainActivity : AppCompatActivity() {
         homeViewModel.getMediaLiveData().observe(this) {
             when (it.status) {
                 Resource.Status.LOADING -> {
-                    binding?.loadingGroup?.visibility = View.VISIBLE
+                    binding?.apply {
+                        loadingLabel.visibility = View.VISIBLE
+                        loadingLabel.text = getString(R.string.loading_data_please_wait)
+                        progressBar.visibility = View.VISIBLE
+                        retryButton.visibility = View.GONE
+                    }
 
                 }
 
                 Resource.Status.SUCCESS -> {
                     val adapter = it.data?.let { it1 -> HomeAdapter(this, it1,scope) }
                     binding?.apply {
-                        loadingGroup.visibility = View.GONE
+                        loadingLabel.visibility = View.GONE
+                        progressBar.visibility = View.GONE
                         recyclerview.visibility = View.VISIBLE
                         recyclerview.adapter = adapter
                     }
@@ -52,9 +58,13 @@ class MainActivity : AppCompatActivity() {
 
                 Resource.Status.ERROR -> {
                     binding?.apply {
-                        loadingGroup.visibility = View.VISIBLE
+                        loadingLabel.visibility = View.VISIBLE
+                        retryButton.visibility = View.VISIBLE
                         progressBar.visibility = View.GONE
                         loadingLabel.text = getString(R.string.something_went_wrong)
+                        retryButton.setOnClickListener {
+                            homeViewModel.getMediaData(100)
+                        }
                     }
                 }
             }
