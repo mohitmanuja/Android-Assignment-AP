@@ -2,12 +2,14 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/size200"
+    android:layout_height="@dimen/size150"
     tools:context=".home.ui.MainActivity">
 
     <ImageView
+        android:id="@+id/item_imageview"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:src="@color/black" />
+        android:layout_margin="@dimen/size4"
+        android:layout_height="@dimen/size150"
+        android:scaleType="centerCrop" />
 
 </LinearLayout>

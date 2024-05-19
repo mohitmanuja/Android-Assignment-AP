@@ -1,18 +1,24 @@
 package com.image.assignment.home.ui
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import com.image.assignment.R
 import com.image.assignment.databinding.ActivityMainBinding
+import com.image.assignment.home.adapter.HomeAdapter
 import com.image.assignment.home.viewModel.HomeViewModel
 import com.image.assignment.network.data.Resource
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.SupervisorJob
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainActivity : AppCompatActivity() {
 
     private val homeViewModel: HomeViewModel by viewModel()
     private var binding: ActivityMainBinding? = null
+    private val job = SupervisorJob()
+    private val scope = CoroutineScope(Dispatchers.Main + job)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,10 +42,12 @@ class MainActivity : AppCompatActivity() {
                 }
 
                 Resource.Status.SUCCESS -> {
-                    binding?.loadingGroup?.visibility = View.GONE
-                    binding?.recyclerview?.visibility = View.VISIBLE
-
-
+                    val adapter = it.data?.let { it1 -> HomeAdapter(this, it1,scope) }
+                    binding?.apply {
+                        loadingGroup.visibility = View.GONE
+                        recyclerview.visibility = View.VISIBLE
+                        recyclerview.adapter = adapter
+                    }
                 }
 
                 Resource.Status.ERROR -> {
@@ -51,5 +59,11 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
+    }
+
+
+    override fun onDestroy() {
+        super.onDestroy()
+        job.cancel()
     }
 }

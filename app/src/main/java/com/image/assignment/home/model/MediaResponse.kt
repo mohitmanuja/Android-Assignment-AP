@@ -11,14 +11,19 @@ data class MediaResponse(
     @SerializedName("coverageURL") var coverageURL: String? = null,
     @SerializedName("publishedAt") var publishedAt: String? = null,
     @SerializedName("publishedBy") var publishedBy: String? = null
-)
-data class Thumbnail(
-    @SerializedName("id") var id: String? = null,
-    @SerializedName("version") var version: Int? = null,
-    @SerializedName("domain") var domain: String? = null,
-    @SerializedName("basePath") var basePath: String? = null,
-    @SerializedName("key") var key: String? = null,
-    @SerializedName("qualities") var qualities: List<Int> = emptyList(),
-    @SerializedName("aspectRatio") var aspectRatio: Float? = null
+) {
+    data class Thumbnail(
+        @SerializedName("id") var id: String? = null,
+        @SerializedName("version") var version: Int? = null,
+        @SerializedName("domain") var domain: String? = null,
+        @SerializedName("basePath") var basePath: String? = null,
+        @SerializedName("key") var key: String? = null,
+        @SerializedName("qualities") var qualities: List<Int> = emptyList(),
+        @SerializedName("aspectRatio") var aspectRatio: Float? = null
 
-)
+    )
+
+    fun getThumbUrl(): String {
+        return thumbnail?.domain + "/" + thumbnail?.basePath + "/0/" + thumbnail?.key
+    }
+}
