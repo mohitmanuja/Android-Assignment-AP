@@ -5,5 +5,7 @@
     <string name="something_went_wrong">Something went wrong! Please check your internet connection or try again!</string>
     <string name="retry">Retry</string>
     <string name="loading_data_please_wait">Loading Data.. Please wait</string>
+    <string name="network_not_available">No internet connection!</string>
+    <string name="network_not_available_cached">No internet connection! You might see cached data</string>
 
 </resources>

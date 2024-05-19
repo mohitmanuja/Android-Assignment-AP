@@ -2,12 +2,14 @@ package com.image.assignment.home.ui
 
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.image.assignment.R
 import com.image.assignment.databinding.ActivityMainBinding
 import com.image.assignment.home.adapter.HomeAdapter
 import com.image.assignment.home.viewModel.HomeViewModel
 import com.image.assignment.network.data.Resource
+import com.image.assignment.utils.NetworkUtil
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
@@ -29,6 +31,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun init() {
+        if (!NetworkUtil.isInternetAvailable(this)) {
+            Toast.makeText(this,getString(R.string.network_not_available_cached),Toast.LENGTH_LONG).show()
+        }
         homeViewModel.getMediaData(100)
         setObservers()
     }
@@ -47,7 +52,8 @@ class MainActivity : AppCompatActivity() {
                 }
 
                 Resource.Status.SUCCESS -> {
-                    val adapter = it.data?.let { it1 -> HomeAdapter(this, it1,scope) }
+
+                    val adapter = it.data?.let { it1 -> HomeAdapter(this, it1, scope) }
                     binding?.apply {
                         loadingLabel.visibility = View.GONE
                         progressBar.visibility = View.GONE
