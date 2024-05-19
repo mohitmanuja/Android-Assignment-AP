@@ -7,7 +7,7 @@ import com.image.assignment.home.MediaCoverageApi
 import com.image.assignment.network.data.Resource
 
 class MediaCoverageRepo(val api: MediaCoverageApi) : BaseRepository() {
-    suspend fun getMediaData(limit: Int): Resource<MediaResponse> {
+    suspend fun getMediaData(limit: Int): Resource<List<MediaResponse>> {
         return safeApiCall { api.getMediaResponse(limit) }
     }
 

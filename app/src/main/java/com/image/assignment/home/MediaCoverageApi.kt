@@ -8,7 +8,7 @@ interface MediaCoverageApi {
 
     @GET(NetworkConfig.MEDIA_COVERAGE)
     suspend fun getMediaResponse(
-        @Path("limit") limit: Int,
-    ): MediaResponse
+        @Query("limit") limit: Int,
+    ): List<MediaResponse>
 }
 

@@ -45,6 +45,7 @@ object RetrofitHelper {
                 MoshiConverterFactory.create(
                     Moshi.Builder().add(KotlinJsonAdapterFactory()).build()
                 ).asLenient()
+
             )
             .client(okHttpClient)
             .build()

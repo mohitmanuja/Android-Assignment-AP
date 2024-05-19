@@ -14,16 +14,16 @@ import kotlinx.coroutines.withContext
 class HomeViewModel(val repo: MediaCoverageRepo) :
     ViewModel() {
 
-    private val mediaLiveData: MutableLiveData<Resource<MediaResponse>> = MutableLiveData()
+    private val mediaLiveData: MutableLiveData<Resource<List<MediaResponse>>> = MutableLiveData()
 
 
-    fun getMediaLiveData(): LiveData<Resource<MediaResponse>> {
+    fun getMediaLiveData(): LiveData<Resource<List<MediaResponse>>> {
         return mediaLiveData
     }
 
 
     fun getMediaData(limit: Int) {
-        var response: Resource<MediaResponse>?
+        var response: Resource<List<MediaResponse>>?
 
         viewModelScope.launch {
             mediaLiveData.value = Resource.loading(null)
