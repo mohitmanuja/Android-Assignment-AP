@@ -1,6 +1,6 @@
-package com.example.baseandroid.base.repo
+package com.image.assignment.base.repo
 
-import com.example.baseandroid.network.data.Resource
+import com.image.assignment.network.data.Resource
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import retrofit2.HttpException

@@ -1,4 +1,4 @@
-package com.example.baseandroid.network
+package com.image.assignment.network
 
 
 import android.content.Context

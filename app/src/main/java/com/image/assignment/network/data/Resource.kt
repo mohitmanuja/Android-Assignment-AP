@@ -1,4 +1,4 @@
-package com.example.baseandroid.network.data
+package com.image.assignment.network.data
 
 data class Resource<out T>(
     val status: Status,

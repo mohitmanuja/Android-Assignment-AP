@@ -1,8 +1,8 @@
-package com.example.baseandroid.utils
+package com.image.assignment.utils
 
 import android.content.Context
 import android.util.Log
-import com.example.baseandroid.BuildConfig
+import com.image.assignment.BuildConfig
 
 
 private const val TAG = "IMG_ASSIGNMENT"

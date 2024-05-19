@@ -1,8 +1,9 @@
-package com.example.baseandroid.base
+package com.image.assignment.base
 
 import android.app.Application
 
-import com.example.baseandroid.base.di.appModule
+import com.image.assignment.home.di.homeModule
+import com.image.assignment.network.di.networkModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.component.KoinApiExtension
@@ -20,7 +21,7 @@ class BaseApplication : Application() {
             androidContext(this@BaseApplication)
             modules(
                 listOf(
-                    appModule
+                    networkModule,homeModule
                 )
             )
         }
