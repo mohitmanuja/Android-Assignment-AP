@@ -2,43 +2,43 @@
 
 ## Overview
 
-The Image Grid App is an Android application that efficiently loads and displays images in a scrollable grid. This project demonstrates asynchronous image loading, caching mechanisms, and smooth scrolling without using any third-party image loading libraries.
-
+The Image Grid App is an Android application that efficiently loads and displays images in a scrollable grid. This project demonstrates asynchronous image loading, caching mechanisms, and smooth scrolling without using any third-party image-loading libraries.
 
 ## Features
 
 ### 1. Simple and Concise API
-   - Load images into ImageViews with just a few lines of code.
-   - Intuitive and easy-to-understand interface for seamless integration into your projects.
+   - Load images into ImageViews just like any other image-loading library.
 
-### 2. Automatic Caching
-   - Images are automatically cached in memory and disk to improve performance and reduce network calls.
-   - Efficient caching strategy ensures that frequently used images are readily available, enhancing user experience.
+## Things I have done to optimize performance 
+
+### 2. In memory Caching and Disk management 
+   - Images are automatically cached in memory and disk to improve performance and reduce redundant network calls.
+   - Efficient caching strategy (LRU Cache) ensures that frequently and recently used images are readily available.
 
 ### 3. Downscaling
-   - Optionally downscale images to reduce memory usage and improve loading times, especially for large images.
-   - Specify custom downscale options to tailor the image loading process according to your application's requirements.
+   - Optionally downscale images to reduce in-memory usage and improve loading times.
 
-### 4. Cancellation
-   - Supports cancellation of image loading tasks to optimize resource usage.
-   - Easily cancel ongoing image loading tasks to prevent unnecessary work and improve responsiveness.
-
-### 5. Memory Management
+### 4. Memory Management
    - Efficient memory management to limit the memory footprint of cached images.
    - Automatically evicts least-recently-used images from memory cache to prevent out-of-memory errors.
 
-### 6. View Lifecycle Handling
+### 5. View Lifecycle Handling/Cancellation 
    - Listens to the view lifecycle events to cancel image loading tasks when the associated ImageView is detached from the window.
-   - Prevents memory leaks and improves efficiency by canceling tasks for detached views.
+   - Prevents memory leaks and improves efficiency by cancelling tasks for detached views.
 
-### 7. Error Handling
+### 6. Error Handling
    - Gracefully handles errors such as IOExceptions during image loading, ensuring robustness and reliability.
    - Provides clear error messages and fallback options to enhance user experience.
 
-### 8. Cache Size Management
+### 7. Cache Size Management
    - Manages cache size to prevent it from growing too large.
-   - Automatically evicts least-recently-used images to free up memory and maintain optimal performance.
+   - Automatically evicts the least recently used images to free up memory and maintain optimal performance.
 
+### 8. ThreadPool Executor 
+   - A fixed-size Thread Pool Executor is employed to prevent network bandwidth congestion caused by an excessive number of concurrent network requests.
+
+### 8. Background Task:
+   - All I/O (disk read and write) and network operations are executed on background threads.
 
 ## Requirements
 
@@ -50,11 +50,11 @@ The Image Grid App is an Android application that efficiently loads and displays
 ### Flow Diagram 
 ![Image](./media/flowdiagram.png)
 
-### Video 1 : First time loading with Internet and switching off internet (Showing cached response and cached images from disk) 
+### Video 1: First time loading with Internet and switching off the Internet (Showing cached response and cached images from disk) 
 [Click here to watch](https://drive.google.com/file/d/1pXTg0DE6XAPtams1Y6JxFnnGvmBnqW5Y/view?usp=sharing)
 
 
-### Video 2 : First time loading without Internet and switching on internet later (Showing network error handling and retry) 
+### Video 2: First time loading without Internet and switching on the Internet later (Showing network error handling and retry) 
 [Click here to watch](https://drive.google.com/file/d/1kJWLYkS_Zdv4T9K30NW3N9Ga2WHoBHLL/view?usp=sharing)
 
 ### Download Debug APK 
@@ -80,8 +80,8 @@ ImageLoader.with(context)
 - **MainActivity**: Initializes the RecyclerView and sets up the adapter.
 - **HomeAdapter**: Manages the list of images and binds view holders.
 - **MediaViewHolder**: Handles the binding of individual items, including image loading and caching.
-- **CachingUtil**: Utility class for handling memory and disk caching.
-- **ImageLoader**: A utility class for handling image loading tasks. It provides a builder pattern for configuring image loading options, such as placeholders, error images, and downscaling options. It also manages the loading of images asynchronously, handling caching, and canceling ongoing loading tasks when necessary.
+- **CachingUtil**: A utility class for handling memory and disk caching.
+- **ImageLoader**: A utility class for handling image-loading tasks. It provides a builder pattern for configuring image loading options, such as placeholders, error images, and downscaling options. It also manages the loading of images asynchronously, handling caching, and canceling ongoing loading tasks when necessary.
 
 
 
