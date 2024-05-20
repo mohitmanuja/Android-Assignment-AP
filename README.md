@@ -54,9 +54,11 @@ The Image Grid App is an Android application that efficiently loads and displays
 [Click here to watch](https://drive.google.com/file/d/1pXTg0DE6XAPtams1Y6JxFnnGvmBnqW5Y/view?usp=sharing)
 
 
-
 ### Video 2 : First time loading without Internet and switching on internet later (Showing network error handling and retry) 
 [Click here to watch](https://drive.google.com/file/d/1kJWLYkS_Zdv4T9K30NW3N9Ga2WHoBHLL/view?usp=sharing)
+
+### Download Debug APK 
+[Click here to download](https://drive.google.com/file/d/13nENpdUSiniNR5Sqw_LBrTVyVfttbAz3/view?usp=sharing)
 
 
 
