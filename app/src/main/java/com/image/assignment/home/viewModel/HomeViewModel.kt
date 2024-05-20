@@ -11,16 +11,13 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class HomeViewModel(val repo: MediaCoverageRepo) :
-    ViewModel() {
+class HomeViewModel(private val repo: MediaCoverageRepo) : ViewModel() {
 
     private val mediaLiveData: MutableLiveData<Resource<List<MediaResponse>>> = MutableLiveData()
-
 
     fun getMediaLiveData(): LiveData<Resource<List<MediaResponse>>> {
         return mediaLiveData
     }
-
 
     fun getMediaData(limit: Int) {
         var response: Resource<List<MediaResponse>>?
@@ -34,10 +31,8 @@ class HomeViewModel(val repo: MediaCoverageRepo) :
                 response?.run {
                     mediaLiveData.value = this
                 }
-
             }
         }
     }
-
 
 }

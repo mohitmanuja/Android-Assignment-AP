@@ -7,8 +7,6 @@ import retrofit2.http.*
 interface MediaCoverageApi {
 
     @GET(NetworkConfig.MEDIA_COVERAGE)
-    suspend fun getMediaResponse(
-        @Query("limit") limit: Int,
-    ): List<MediaResponse>
+    suspend fun getMediaResponse(@Query("limit") limit: Int): List<MediaResponse>
 }
 
